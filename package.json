@@ -1,0 +1,45 @@
+{
+  "name": "namefyi",
+  "version": "0.1.0",
+  "description": "Pure TypeScript name engine -- Korean romanization, Five Elements stroke analysis, and population formatting. Zero dependencies.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "korean",
+    "romanization",
+    "hangul",
+    "name",
+    "five-elements",
+    "stroke-count",
+    "cjk",
+    "unicode",
+    "slug"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fyipedia/namefyi-js"
+  },
+  "homepage": "https://namefyi.com",
+  "license": "MIT",
+  "author": "FYIPedia",
+  "devDependencies": {
+    "tsup": "^8.0",
+    "typescript": "^5.7",
+    "vitest": "^3.0"
+  }
+}
