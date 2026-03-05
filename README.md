@@ -9,6 +9,10 @@ Pure TypeScript name engine for developers. [Romanize Korean text](https://namef
 
 > **Try the interactive tools at [namefyi.com](https://namefyi.com/)** -- name search, surname explorer, and Five Elements compatibility checker.
 
+<p align="center">
+  <img src="demo.gif" alt="namefyi demo — Korean romanization and Five Elements analysis" width="800">
+</p>
+
 ## Install
 
 ```bash
