@@ -1,6 +1,6 @@
 {
   "name": "namefyi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pure TypeScript name engine -- Korean romanization, Five Elements stroke analysis, and population formatting. Zero dependencies.",
   "type": "module",
   "main": "dist/index.js",
