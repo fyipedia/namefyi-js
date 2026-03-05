@@ -17,9 +17,12 @@ Pure TypeScript name engine for developers. [Romanize Korean text](https://namef
 
 - [Install](#install)
 - [Quick Start](#quick-start)
-- [Korean Hangul Decomposition](#korean-hangul-decomposition)
-- [Five Elements (Ohaeng)](#five-elements-ohaeng)
-- [URL Slug Generation](#url-slug-generation)
+- [What You Can Do](#what-you-can-do)
+  - [Korean Romanization](#korean-romanization)
+  - [Korean Hangul Decomposition](#korean-hangul-decomposition)
+  - [Five Elements (Ohaeng)](#five-elements-ohaeng)
+  - [CJK Stroke Counting](#cjk-stroke-counting)
+  - [URL Slug Generation](#url-slug-generation)
 - [API Reference](#api-reference)
 - [TypeScript Types](#typescript-types)
 - [Features](#features)
@@ -66,7 +69,35 @@ console.log(formatPopulation(10_304_000));  // "10.3M"
 console.log(formatPopulation(850_000));     // "850K"
 ```
 
-## Korean Hangul Decomposition
+## What You Can Do
+
+### Korean Romanization
+
+The [Revised Romanization of Korean](https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean) (RR) is the official romanization system adopted by South Korea in 2000. It replaced the McCune-Reischauer system and is used for road signs, passports, and international communication.
+
+Korean names follow a distinctive pattern: a one-syllable surname (e.g., Kim, Lee, Park) followed by a two-syllable given name. South Korea has approximately **5,600 unique surnames** used by over 50 million people, with the top 5 (Kim, Lee, Park, Choi, Jung) covering over 50% of the population.
+
+| Surname (Hangul) | Romanization | Population | Percentage |
+|-----------------|-------------|-----------|-----------|
+| Kim | gim | ~10.6M | 21.5% |
+| Lee | i | ~7.3M | 14.7% |
+| Park | bak | ~4.2M | 8.4% |
+| Choi | choe | ~2.3M | 4.7% |
+| Jung/Chung | jeong | ~2.4M | 4.8% |
+
+```typescript
+import { romanizeKorean } from "namefyi";
+
+// Revised Romanization -- syllable-by-syllable decomposition
+console.log(romanizeKorean("김민준"));   // "gimminjun"
+console.log(romanizeKorean("이서연"));   // "iseoyeon"
+console.log(romanizeKorean("박지훈"));   // "bakjihun"
+console.log(romanizeKorean("한국어"));   // "hangugeo"
+```
+
+Learn more: [Korean Name Search](https://namefyi.com/search/) · [Surname Explorer](https://namefyi.com/korean/) · [Revised Romanization](https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean)
+
+### Korean Hangul Decomposition
 
 Hangul syllables (가-힣) are algorithmically decomposable into initial consonant + medial vowel + optional final consonant using Unicode arithmetic: `(code - 0xAC00) / 588` gives the initial, `% 588 / 28` the medial, `% 28` the final.
 
@@ -78,7 +109,11 @@ The Unicode block U+AC00-U+D7A3 contains 11,172 pre-composed Hangul syllables. E
 
 The formula `19 * 21 * 28 = 11,172` perfectly accounts for every possible syllable. This implementation uses syllable-by-syllable decomposition following the Revised Romanization of Korean standard.
 
-## Five Elements (Ohaeng)
+Learn more: [Hangul Jamo (Unicode)](https://en.wikipedia.org/wiki/Hangul_Jamo_(Unicode_block)) · [Korean Writing System](https://en.wikipedia.org/wiki/Hangul)
+
+### Five Elements (Ohaeng)
+
+The [Five Elements](https://en.wikipedia.org/wiki/Wu_Xing) (Ohaeng) is a fundamental concept in East Asian philosophy used in traditional Korean naming. Each element has a generative (SangSaeng) and destructive (SangGeuk) relationship with others, forming two cycles that guide name compatibility analysis.
 
 ```typescript
 import { fiveElementsForStrokes, checkElementCompatibility } from "namefyi";
@@ -99,7 +134,24 @@ checkElementCompatibility("木", "土");   // overcoming (Wood parts Earth)
 checkElementCompatibility("火", "金");   // overcoming (Fire melts Metal)
 ```
 
-## URL Slug Generation
+Learn more: [Five Elements Guide](https://namefyi.com/) · [Wu Xing (Wikipedia)](https://en.wikipedia.org/wiki/Wu_Xing)
+
+### CJK Stroke Counting
+
+CJK (Chinese-Japanese-Korean) characters are built from a fixed number of brush strokes. The stroke count determines which of the Five Elements a character belongs to, using the last digit: 1-2 = Wood, 3-4 = Fire, 5-6 = Earth, 7-8 = Metal, 9-0 = Water. The bundled stroke data covers the CJK Unified Ideographs block (U+4E00-U+9FFF).
+
+```typescript
+import { getStrokeCount, fiveElementsForStrokes } from "namefyi";
+
+// Get stroke count for a CJK character (by Unicode codepoint)
+const strokes = getStrokeCount(0x91D1);  // Gold character
+console.log(strokes);                     // 8
+console.log(fiveElementsForStrokes(strokes));  // "Metal"
+```
+
+Learn more: [CJK Stroke Count](https://en.wikipedia.org/wiki/Stroke_(CJK_character)) · [REST API Docs](https://namefyi.com/developers/)
+
+### URL Slug Generation
 
 ```typescript
 import { surnameSlug, characterSlug } from "namefyi";
@@ -112,6 +164,8 @@ console.log(surnameSlug("Park", "korean"));      // "park-korean"
 console.log(characterSlug("geum", "gold"));      // "geum-gold"
 console.log(characterSlug("min", "people"));     // "min-people"
 ```
+
+Learn more: [Name Search](https://namefyi.com/search/) · [OpenAPI Spec](https://namefyi.com/api/openapi.json)
 
 ## API Reference
 
