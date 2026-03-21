@@ -95,7 +95,7 @@ console.log(romanizeKorean("박지훈"));   // "bakjihun"
 console.log(romanizeKorean("한국어"));   // "hangugeo"
 ```
 
-Learn more: [Korean Name Search](https://namefyi.com/search/) · [Surname Explorer](https://namefyi.com/korean/) · [Revised Romanization](https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean)
+Learn more: [Revised Romanization](https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean)
 
 ### Korean Hangul Decomposition
 
@@ -165,7 +165,7 @@ console.log(characterSlug("geum", "gold"));      // "geum-gold"
 console.log(characterSlug("min", "people"));     // "min-people"
 ```
 
-Learn more: [Name Search](https://namefyi.com/search/) · [OpenAPI Spec](https://namefyi.com/api/openapi.json)
+Learn more: [OpenAPI Spec](https://namefyi.com/api/openapi.json)
 
 ## API Reference
 
@@ -212,8 +212,7 @@ import type { ElementCompatibility } from "namefyi";
 
 ## Learn More About Names
 
-- **Browse**: [Name Search](https://namefyi.com/search/) · [Korean Names](https://namefyi.com/korean/)
-- **API**: [REST API Docs](https://namefyi.com/developers/) · [OpenAPI Spec](https://namefyi.com/api/openapi.json)
+- **Browse**: - **API**: [REST API Docs](https://namefyi.com/developers/) · [OpenAPI Spec](https://namefyi.com/api/openapi.json)
 - **Python**: [PyPI Package](https://pypi.org/project/namefyi/)
 
 ## Also Available for Python
